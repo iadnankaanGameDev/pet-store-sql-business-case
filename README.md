@@ -81,16 +81,22 @@ En yüksek gelir “Champions” ve “Potential Loyalists” segmentlerinden ge
 
 ---
 
-### 6️⃣ Cohort Analizi
+## 6️⃣ Cohort Analizi (Davranış İncelemesi)
 
-Müşterilerin ilk alışveriş ayına göre retention davranışları analiz edilmiştir.
+Müşterilerin ilk alışveriş ayına göre aktivite davranışları analiz edilmiştir.
 
-Bu analiz:
-- Müşteri yaşam süresi
-- Aktivite devamlılığı
-- Growth stratejileri
+Ancak veri seti sentetik olduğu için gerçek hayattaki gibi doğal bir müşteri kaybı (churn) gözlemlenmemektedir. 
+Cohort büyüklükleri ile aktif müşteri sayıları büyük ölçüde eşit kalmaktadır.
 
-açısından önemli içgörüler sunmaktadır.
+Bu nedenle bu analiz:
+
+- SQL cohort mantığını göstermek
+- DATE_TRUNC ve DATE_DIFF kullanımını sergilemek
+- Retention hesaplama metodolojisini örneklemek
+
+amacıyla yapılmıştır.
+
+Gerçek bir üretim veri setinde retention oranlarının zamanla düşmesi beklenir.
 
 ---
 
