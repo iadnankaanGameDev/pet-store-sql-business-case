@@ -126,4 +126,84 @@ açısından önemli içgörüler sunmaktadır.
 
 ---
 
-## 📁 Proje Yapısı
+---
+
+## 📂 Veri Seti
+
+Bu projede kullanılan veri seti `data/` klasörü içinde yer almaktadır.
+
+Tablolar:
+
+- `customers.csv`
+- `products.csv`
+- `sales.csv`
+
+Bu dosyalar BigQuery veya herhangi bir SQL ortamına yüklenerek analiz tekrar üretilebilir.
+
+---
+
+## ▶️ BigQuery Üzerinde Analizi Tekrar Üretme
+
+Analizi kendi ortamınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
+
+### 1️⃣ BigQuery’de Dataset Oluşturun
+
+- Google Cloud Console → BigQuery
+- Yeni bir dataset oluşturun (örnek: `pet_store_case`)
+
+---
+
+### 2️⃣ CSV Dosyalarını Yükleyin
+
+`data/` klasöründeki dosyaları ayrı ayrı yükleyin:
+
+- customers.csv → tablo adı: `customers`
+- products.csv → tablo adı: `products`
+- sales.csv → tablo adı: `sales`
+
+Yükleme sırasında:
+
+- File format: CSV
+- Header row: 1 (ilk satır kolon isimleri)
+- Auto detect schema: Açık olabilir
+
+---
+
+### 3️⃣ SQL Sorgularını Çalıştırmadan Önce Yapılması Gereken Değişiklik
+
+SQL dosyalarının içinde tablo referansları şu formatta yazılmış olabilir:
+
+project_id.dataset_name.table_name
+
+Örneğin:
+
+goit-exercises.GOITexercises.sales
+
+
+Bunu kendi BigQuery ortamınıza göre değiştirmeniz gerekir.
+
+Örneğin dataset adınız `pet_store_case` ise şu şekilde güncelleyin:
+your_project_id.pet_store_case.sales
+
+
+veya aynı dataset içinde çalışıyorsanız sadece:
+sales
+
+## 📌 Not
+
+SQL sorguları BigQuery Standard SQL uyumludur.  
+Farklı bir SQL motoru (PostgreSQL, MySQL vb.) kullanıyorsanız:
+
+- `SAFE_DIVIDE` fonksiyonu yerine normal bölme işlemi
+- `DATE_TRUNC` fonksiyonunun syntax farkları
+- Window function kullanım farklılıkları
+
+göz önünde bulundurulmalıdır.
+
+
+
+
+
+
+
+
