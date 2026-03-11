@@ -28,8 +28,8 @@ Bu analiz aşağıdaki temel sorulara cevap aramaktadır:
 
 ### 2️⃣ Pareto Analizi (Ürün Bazlı)
 
-- Top 3 ürün toplam gelirin **%54’ünü** üretmektedir.
-- Top 10 ürün (ürün portföyünün ~%48’i) toplam gelirin **~%80’ini** oluşturmaktadır.
+- Top 3 ürün toplam gelirin %54’ünü üretmektedir.
+- Top 10 ürün (ürün portföyünün yaklaşık %48’i) toplam gelirin yaklaşık %80’ini oluşturmaktadır.
 
 Bu durum orta seviyede ürün bağımlılığına işaret etmektedir.
 
