@@ -1,91 +1,129 @@
-# pet-store-sql-business-case
-End-to-end SQL business analysis including Pareto, RFM segmentation, revenue volatility and concentration risk modeling.
+# 🐾 Pet Store SQL İş Analizi Case Study
 
-# 🐾 Pet Store SQL Business Case
+Bu proje, bir pet store şirketi için uçtan uca SQL tabanlı iş analizi çalışmasını içermektedir.
 
-End-to-end SQL business analysis including Pareto analysis, RFM segmentation, revenue volatility and category concentration modeling.
-
----
-
-## 📊 Business Problem
-
-The objective of this analysis is to understand:
-
-- Revenue concentration risk  
-- Customer value distribution  
-- Product and category dependency  
-- Strategic revenue structure  
+Amaç; gelir yapısını, müşteri değer dağılımını ve ürün/kategori bazlı bağımlılık risklerini analiz ederek stratejik içgörüler üretmektir.
 
 ---
 
-## 🔎 Analysis Performed
+## 📊 İş Problemi
 
-### 1️⃣ Pareto Analysis (Product Level)
+Bu analiz aşağıdaki temel sorulara cevap aramaktadır:
 
-- Top 3 products generate **54% of total revenue**
-- Top 10 products (~48% of product portfolio) generate **~80% of revenue**
-
-This indicates moderate product concentration risk.
-
----
-
-### 2️⃣ Category Concentration
-
-Revenue distribution by category:
-
-- Vaccine → 40.5%
-- Care → 32.7%
-- Supplement → 19.6%
-- Accessories → 7.2%
-
-Top 2 categories generate **73% of total revenue**.
-
-Herfindahl-Hirschman Index (HHI) = **0.314**
-
-Since HHI > 0.25, category-level concentration is high, indicating strategic dependency on specific categories.
+- Gelir birkaç ürüne mi bağımlı?
+- Gelir birkaç kategoriye mi yoğunlaşmış durumda?
+- En yüksek değeri hangi müşteri segmentleri yaratıyor?
+- İş modeli ürün bazlı mı yoksa kategori bazlı mı risk taşıyor?
 
 ---
 
-### 3️⃣ RFM Segmentation
+## 🔎 Yapılan Analizler
 
-Customers were segmented using:
-
-- **Recency** – How recently did the customer purchase?
-- **Frequency** – How many transactions?
-- **Monetary** – Total revenue generated
-
-Revenue is primarily driven by Champions and Potential Loyalists segments.
+### 1️⃣ Veri Kalite Kontrolleri
+- Duplicate transaction kontrolü  
+- Null join anahtarı analizi  
+- Aylık revenue ve sipariş trendi  
 
 ---
 
-## 📈 Key Insights
+### 2️⃣ Pareto Analizi (Ürün Bazlı)
 
-- Revenue structure is category-driven rather than product-driven.
-- High dependency on Vaccine and Care categories.
-- Top products have significant but not extreme dominance.
-- Business faces strategic risk from category concentration.
+- Top 3 ürün toplam gelirin **%54’ünü** üretmektedir.
+- Top 10 ürün (ürün portföyünün ~%48’i) toplam gelirin **~%80’ini** oluşturmaktadır.
 
----
-
-## 🛠 SQL Techniques Used
-
-- Window Functions
-- Cumulative Distribution
-- Pareto Logic
-- Herfindahl Index (HHI)
-- RFM Scoring Model
-- Revenue Risk Simulation
+Bu durum orta seviyede ürün bağımlılığına işaret etmektedir.
 
 ---
 
-## 🎯 Business Recommendations
+### 3️⃣ Revenue Volatility (Ürün Yoğunlaşma Analizi)
 
-- Diversify category portfolio
-- Protect high-revenue categories operationally
-- Strengthen retention strategies for high-value customers
-- Conduct elasticity analysis on top revenue products
+Ürün bazında gelir payı ve kümülatif dağılım incelenmiştir.
+
+- Gelirin %80’i sınırlı sayıda üründen gelmektedir.
+- Yüksek gelir üreten ürünler operasyonel açıdan kritik öneme sahiptir.
+
+📌 Risk:
+En yüksek paylı ürünlerde yaşanacak talep düşüşü veya stok problemi,
+toplam geliri orantısız şekilde etkileyebilir.
 
 ---
 
-## 📁 Project Structure
+### 4️⃣ Category Concentration Analizi
 
+Kategori bazlı gelir dağılımı:
+
+- Vaccine → %40+
+- Care → %30+
+- Supplement → %19+
+- Accessories → %7+
+
+Top 2 kategori toplam gelirin **%73’ünü** oluşturmaktadır.
+
+Herfindahl-Hirschman Index (HHI) ≈ **0.31**
+
+HHI > 0.25 olduğu için kategori bazında yüksek konsantrasyon mevcuttur.
+
+📌 Sonuç:
+Gelir yapısı ürün bazlı değil, kategori bazlı yoğunlaşmaktadır.
+Business stratejik olarak belirli kategorilere bağımlıdır.
+
+---
+
+### 5️⃣ RFM Segmentasyonu
+
+Müşteriler aşağıdaki metriklerle segmentlenmiştir:
+
+- **Recency** – Son alışveriş zamanı
+- **Frequency** – İşlem sayısı
+- **Monetary** – Toplam harcama
+
+En yüksek gelir “Champions” ve “Potential Loyalists” segmentlerinden gelmektedir.
+
+---
+
+### 6️⃣ Cohort Analizi
+
+Müşterilerin ilk alışveriş ayına göre retention davranışları analiz edilmiştir.
+
+Bu analiz:
+- Müşteri yaşam süresi
+- Aktivite devamlılığı
+- Growth stratejileri
+
+açısından önemli içgörüler sunmaktadır.
+
+---
+
+## 📈 Temel İçgörüler
+
+- Gelir yapısı kategori odaklı yoğunlaşmaktadır.
+- Vaccine ve Care kategorileri stratejik öneme sahiptir.
+- Ürün bazlı bağımlılık orta seviyededir.
+- Yüksek değerli müşteri segmentleri gelir performansını sürüklemektedir.
+- İş modeli kategori riskine karşı hassastır.
+
+---
+
+## 🛠 Kullanılan SQL Teknikleri
+
+- Window Functions  
+- Cumulative Distribution  
+- Pareto Analizi  
+- Herfindahl-Hirschman Index (HHI)  
+- RFM Skorlama Modeli  
+- Cohort Retention Analizi  
+- Revenue Risk Senaryo Modelleme  
+
+---
+
+## 🎯 Stratejik Öneriler
+
+- Kategori portföy çeşitlendirilmesi  
+- Kritik kategoriler için risk azaltma planı  
+- Yüksek değerli müşteri segmentlerine özel kampanyalar  
+- Düşük paylı kategorilerde büyüme stratejisi  
+- Top revenue ürünler için talep ve stok optimizasyonu  
+
+---
+
+## 📁 Proje Yapısı
