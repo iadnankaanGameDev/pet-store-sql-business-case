@@ -1,17 +1,20 @@
 SELECT 1;
 /*
 -------------------------------------------------------
-CATEGORY CONCENTRATION ANALYSIS
+CATEGORY CONCENTRATION ANALİZİ
 -------------------------------------------------------
 
-Objective:
-Measure revenue dependency at category level and evaluate
-strategic concentration risk.
+Amaç:
+Revenue’nun kategori bazında ne kadar yoğunlaştığını ölçmek
+ve stratejik bağımlılık riskini değerlendirmek.
+
+Bu analiz şu soruya cevap verir:
+Revenue birkaç kategoriye mi bağımlı?
 
 -------------------------------------------------------
 */
 
--- Category revenue distribution
+-- 1) Kategori bazında revenue dağılımı
 WITH category_rev AS (
   SELECT
     p.category_name,
@@ -26,7 +29,6 @@ shares AS (
   SELECT
     category_name,
     revenue,
-    SUM(revenue) OVER() AS total_revenue,
     SAFE_DIVIDE(revenue, SUM(revenue) OVER()) AS revenue_share
   FROM category_rev
 ),
@@ -44,7 +46,7 @@ ORDER BY revenue DESC;
 
 -------------------------------------------------------
 
--- Herfindahl-Hirschman Index (HHI)
+-- 2) Herfindahl-Hirschman Index (HHI) hesaplama
 WITH category_rev AS (
   SELECT
     p.category_name,
@@ -66,31 +68,31 @@ SELECT
 FROM shares;
 
 /*
-CATEGORY CONCENTRATION ANALYSIS
+ANALİZ YORUMU:
 
-Category revenue dağılımı:
+Kategori revenue dağılımı yaklaşık olarak:
 
-Vaccine      → %40.5
-Care         → %32.7
-Supplement   → %19.6
-Accessories  → %7.2
+Vaccine      → %40+
+Care         → %30+
+Supplement   → %20 civarı
+Accessories  → %7 civarı
 
-Top 2 kategori toplam revenue’nun %73’ünü oluşturmaktadır.
+Top 2 kategori toplam revenue’nun yaklaşık %73’ünü oluşturmaktadır.
 
-Herfindahl-Hirschman Index (HHI) = 0.314
+Herfindahl-Hirschman Index (HHI) ≈ 0.31
 
-HHI > 0.25 olduğundan, kategori bazında yüksek revenue concentration bulunmaktadır.
+HHI > 0.25 olduğu için kategori bazında yüksek revenue yoğunlaşması vardır.
 
 Yorum:
-Revenue birkaç kategoriye bağımlıdır.
+Revenue ürün bazlı değil, daha çok kategori bazlı yoğunlaşmıştır.
 Özellikle Vaccine ve Care kategorileri business için kritik öneme sahiptir.
 
-Stratejik risk:
-Bu kategorilerde talep düşüşü, regülasyon değişikliği veya rekabet artışı olması durumunda
-toplam revenue ciddi şekilde etkilenebilir.
+Stratejik Risk:
+Bu kategorilerde yaşanacak regülasyon, talep düşüşü veya rekabet artışı
+toplam revenue’yu ciddi şekilde etkileyebilir.
 
 Öneri:
 - Kategori portföy çeşitlendirmesi
-- Düşük paylı kategorilerde (Accessories gibi) büyüme stratejisi
-- Yüksek paylı kategoriler için risk azaltma planı
+- Düşük paylı kategorilerde büyüme stratejisi
+- Kritik kategoriler için risk azaltma planı
 */
